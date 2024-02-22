@@ -1,0 +1,46 @@
+let a1 = 'hello';
+let b2 = 'owu';
+let c3 = 'com';
+let d4 = 'ua';
+let e5 = 1;
+let f6 = 10;
+let g7 = -999;
+let h8 = 123;
+let i9 = 3.14;
+let j10 = 2.7;
+let k11 = 16;
+let l12 = true;
+let m13 = false;
+console.log(a1);
+console.log(b2);
+console.log(c3);
+console.log(d4);
+console.log(e5);
+console.log(f6);
+console.log(g7);
+console.log(h8);
+console.log(i9);
+console.log(j10);
+console.log(k11);
+console.log(l12);
+console.log(m13);
+
+let firstName = 'Oleksandr';
+let middleName = 'Ivanovych';
+let lastName = 'Kyryliuk';
+let person = `${firstName} ${middleName} ${lastName}`;
+console.log(person);
+
+let a = 100;
+let b = '100';
+let c = true;
+console.log(typeof a);
+console.log(typeof b);
+console.log(typeof c);
+
+let myName = prompt("Your first name?", 'Oleksandr');
+console.log(myName);
+let myLastName = prompt('Your last name?', 'Kyryliuk');
+console.log(myLastName);
+let myAge = prompt('Your age?', 27);
+console.log(myAge);
