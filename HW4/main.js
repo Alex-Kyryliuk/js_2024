@@ -36,12 +36,10 @@ array(exampleArray);
 
 // - створити функцію яка створює параграф з текстом. Текст задати через аргумент
 function paragraphText(text) {
-    let p = document.createElement('p');
-    p.textContent = text;
-    document.body.appendChild(p);
+    document.write(`<p>${text}</p>`)
 }
 
-let myText = "lorem lorem";
+let myText = 'lorem lorem';
 paragraphText(myText);
 
 // - створити функцію яка створює ul з трьома елементами li. Текст li задати через аргумент всім однаковий
@@ -70,12 +68,12 @@ createList("LLorem ipsum dolor sit amet!", 10);
 // - створити функцію яка приймає масив примітивних елементів (числа,стрінги,булеві), та будує для них список
 function arrayElement(arr) {
     document.write(`<ul>`);
-    arr.forEach(function (item) {
-        document.write(`<li> ${item} </li>`);
-    });
+    for (let argument of arr) {
+        document.write(`<li> ${argument} </li>`);
+    }
     document.write(`</ul>`);
-}
 
+}
 let arr = [1, 2, true, false, 'world'];
 arrayElement(arr);
 
