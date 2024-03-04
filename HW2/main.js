@@ -34,30 +34,28 @@ let bookJs = {
     title: 'js',
     pageCount: 241,
     genre: 'study',
-    authors: {
-        name: 'Sasha Oleksandr',
-        age: 32
-    }
+    authors: [
+        {name: 'Sasha Oleksandr', age: 32}
+    ]
 };
 let bookReakt = {
     title: 'reakt',
     pageCount: 292,
     genre: 'study',
-    authors: {
-        name: 'Veff Oleksii',
-        age: 37
-    }
+    authors: [
+        {name: 'Veff Oleksii', age: 37}
+    ]
 };
 let bookHtmlCss = {
     title: 'html&css',
     pageCount: 146,
     genre: 'study',
-    authors: {
-        name: 'Graff Drakula',
-        age: 88
-    }
+    authors: [
+        {name: 'Graff Drakula', age: 88}
+    ]
 };
 console.log(bookJs, bookReakt, bookHtmlCss);
+
 // - Створити масив з 10 об'єктами які описують сутніть "користувач". Поля: name, username,password. Вивести в консоль пароль кожного користувача
 let users = [
     {name: 'Alex', username: 'Alexxx', password: '32e23eQded'},
@@ -173,7 +171,7 @@ let coursesAndDurationArray = [
     {title: 'FullStack', monthDuration: 7},
     {title: 'Frontend', monthDuration: 4}
 ];
-if (coursesAndDurationArray[0].monthDuration > 5 ) {
+if (coursesAndDurationArray[0].monthDuration > 5) {
     console.log(`${coursesAndDurationArray[0].title} - ${'Super'}`);
 }
 if (coursesAndDurationArray[1].monthDuration > 5) {
