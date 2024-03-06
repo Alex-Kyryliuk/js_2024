@@ -143,6 +143,7 @@ let deck = deckAll.filter(card =>
 );
 console.log(deck);
 
+
 let spadesAce = deck.find(card => card.cardSuit === 'spade' && card.value === 'ace');
 console.log(spadesAce);
 
@@ -155,7 +156,7 @@ console.log(redCard);
 let diamonds = deck.filter(card => card.cardSuit === 'diamond');
 console.log(diamonds);
 
-let highValueClubs = deck.filter(card => card.cardSuit === 'clubs' && values.indexOf(card.value) >= 5);
+let highValueClubs = deck.filter(card => card.cardSuit === 'clubs' && values.indexOf(card.value) >= 3);
 console.log(highValueClubs);
 
 // Взяти описану колоду карт, та за допомоги reduce упакувати всі карти по "мастях" в об'єкт
