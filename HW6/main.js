@@ -26,12 +26,16 @@ console.log(stringsLowerCase);
 
 // - Є "брудна" стрінга let str = ' dirty string   ' . Почистити її від зайвих пробілів.
 let str = ' dirty string   ';
+let clearStr = str.trim();
+console.log(clearStr);
 
-let startIndex = str.indexOf(' ');
-let endIndex = str.lastIndexOf('   ');
+// let startIndex = str.indexOf(' ');
+// let endIndex = str.lastIndexOf('   ');
+//
+// let cleanStr = str.substring(startIndex + 1, endIndex);
+// console.log(cleanStr);
 
-let cleanStr = str.substring(startIndex + 1, endIndex);
-console.log(cleanStr);
+// ------------------------------------------------
 
 // - Напишіть функцію stringToarray(str), яка перетворює рядок на масив слів.
 //     let str = 'Ревуть воли як ясла повні';
@@ -118,12 +122,12 @@ const cardSuit = ['spade', 'diamond', 'heart', 'clubs'];
 const values = ['6', '7', '8', '9', '10', 'ace', 'jack', 'queen', 'king'];
 const color = ['red', 'black'];
 
-let deck = [];
+let deckAll = [];
 
 for (let suit of cardSuit) {
     for (let value of values) {
         for (let clr of color) {
-            deck.push({
+            deckAll.push({
                 cardSuit: suit,
                 value: value,
                 color: clr
@@ -131,6 +135,13 @@ for (let suit of cardSuit) {
         }
     }
 }
+console.log(deckAll);
+
+let deck = deckAll.filter(card =>
+    (card.cardSuit === 'diamond' || card.cardSuit === 'heart') && card.color === 'red' ||
+    (card.cardSuit === 'spade' || card.cardSuit === 'clubs') && card.color === 'black'
+);
+console.log(deck);
 
 let spadesAce = deck.find(card => card.cardSuit === 'spade' && card.value === 'ace');
 console.log(spadesAce);
