@@ -122,27 +122,39 @@ const cardSuit = ['spade', 'diamond', 'heart', 'clubs'];
 const values = ['6', '7', '8', '9', '10', 'ace', 'jack', 'queen', 'king'];
 const color = ['red', 'black'];
 
-let deckAll = [];
-
-for (let suit of cardSuit) {
-    for (let value of values) {
-        for (let clr of color) {
-            deckAll.push({
-                cardSuit: suit,
-                value: value,
-                color: clr
-            });
+let deck = [];
+let cards = () => {
+    for (let cSuit of cardSuit) {
+        for (let value of values) {
+            deck.push({cardSuit: cSuit, value: value});
         }
     }
+    deck.map(item => item.cardSuit === 'diamond' || item.cardSuit === 'heart' ? item.color = 'red' : item.color = 'black');
+    return cards;
 }
-console.log(deckAll);
-
-let deck = deckAll.filter(card =>
-    (card.cardSuit === 'diamond' || card.cardSuit === 'heart') && card.color === 'red' ||
-    (card.cardSuit === 'spade' || card.cardSuit === 'clubs') && card.color === 'black'
-);
+cards();
 console.log(deck);
 
+// let deckAll = [];
+//
+// for (let suit of cardSuit) {
+//     for (let value of values) {
+//         for (let clr of color) {
+//             deckAll.push({
+//                 cardSuit: suit,
+//                 value: value,
+//                 color: clr
+//             });
+//         }
+//     }
+// }
+// console.log(deckAll);
+//
+// let deck = deckAll.filter(card =>
+//     (card.cardSuit === 'diamond' || card.cardSuit === 'heart') && card.color === 'red' ||
+//     (card.cardSuit === 'spade' || card.cardSuit === 'clubs') && card.color === 'black'
+// );
+// console.log(deck);
 
 let spadesAce = deck.find(card => card.cardSuit === 'spade' && card.value === 'ace');
 console.log(spadesAce);
