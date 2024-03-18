@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!---------------------------------------------------------->
+<form id="myForm" name="readingUser">
+    <label for="i1">Введіть ваше імя:</label>
+    <input id="i1" type="text" placeholder="name"><br>
+
+    <label for="i2">Введіть вашу фамілію:</label>
+    <input id="i2" type="text" placeholder="surname"><br>
+
+    <label for="i3">Введіть ваш вік:</label>
+    <input id="i3" type="number" placeholder="age"><br>
+
+    <button id="button">send</button>
+</form>
+<div id="target"></div>
+<!---------------------------------------------------------->
+<div id="counter">0</div>
+<!---------------------------------------------------------->
+<button id="prevButton">prev</button>
+<button id="nextButton">next</button>
+<!---------------------------------------------------------->
+<div id="text">Some text</div>
+<button id="deleteText">Delete text</button>
+<!---------------------------------------------------------->
+<div>
+    <label for="ageInput">Введіть ваш вік:</label>
+    <input type="number" id="ageInput" placeholder="Введіть ваш вік">
+    <button id="checkAgeButton">Перевірити вік</button>
+</div>
+<!---------------------------------------------------------->
+<label for="rowCountInput">Кількість рядків:</label>
+<input type="number" id="rowCountInput" placeholder="Введіть кількість рядків"><br>
+
+<label for="columnCountInput">Кількість стовпців:</label>
+<input type="number" id="columnCountInput" placeholder="Введіть кількість стовпців"><br>
+
+<label for="cellContentInput">Вміст ячеєк:</label>
+<input type="text" id="cellContentInput" placeholder="Введіть текст"><br>
+
+<button id="createTableButton">Створити таблицю</button><br>
+<div id="tableContainer"></div>
+
+<!---------------------------------------------------------->
+<div id="price">100 грн.</div>
+
+<script src="main.js">
+</script>
+</body>
+</html>
