@@ -6,18 +6,15 @@ myForm.button.onclick = function () {
     let surname = myForm.i2.value;
     let age = myForm.i3.value;
 
-    // let user = {
-    //     name: name,
-    //     surname: surname,
-    //     age: +age
-    // };
-    // let div = document.createElement('div');
-    // document.getElementById('target').appendChild(div).innerText = JSON.stringify(user);
-
     let div = document.createElement('div');
     document.getElementById('target').appendChild(div);
     div.innerText = `User: ${name} ${surname}, age: ${+age}`
+
+    myForm.i1.value = '';
+    myForm.i2.value = '';
+    myForm.i3.value = '';
 }
+
 myForm.onsubmit = function (ev) {
     ev.preventDefault();
 }
@@ -46,7 +43,7 @@ localStorage.setItem('sessions', JSON.stringify(sessions));
 
 // зробити масив на 100 об'єктів та дві кнопки prev next
 // при завантажені сторінки з'являються перші 10 об'єктів.
-//     При натисканні next виводяться настпні 10 об'єктів
+// При натисканні next виводяться настпні 10 об'єктів
 // При натисканні prev виводяться попередні 10 об'єктів
 
 let arr = [];
@@ -57,11 +54,11 @@ for (let i = 0; i < 100; i++) {
     arr.push({index: i + 1, data: `Object ${i + 1}`});
 }
 
-// console.log(arr);
-
 function displayItems(startIndex, endIndex) {
     for (let i = startIndex; i < endIndex; i++) {
-        console.log(arr[i].data);
+        let divObj = document.createElement('div');
+        document.getElementById('objAdd').appendChild(divObj);
+        divObj.innerText = arr[i].data;
     }
 }
 
@@ -100,6 +97,7 @@ let checkAgeButton = document.getElementById('checkAgeButton');
 
 checkAgeButton.addEventListener('click', function () {
     let age = parseInt(ageInput.value);
+    ageInput.value = '';
 
     if (age < 18) {
         alert('Вам немає 18 років.');
@@ -108,14 +106,16 @@ checkAgeButton.addEventListener('click', function () {
     } else {
         alert('???');
     }
+
+
 });
 //
 // *** Створити 3 інпута та кнопку. Один визначає кількість рядків, другий - кількість ячеєк, третій вмиіст ячеєк.
 //     При натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.
 let createTableButton = document.getElementById('createTableButton');
 createTableButton.addEventListener('click', function () {
-    let rowCount = parseInt(document.getElementById('rowCountInput').value);
-    let columnCount = parseInt(document.getElementById('columnCountInput').value);
+    let rowCount = document.getElementById('rowCountInput').value;
+    let columnCount = document.getElementById('columnCountInput').value;
     let cellContent = document.getElementById('cellContentInput').value;
 
     let tableContainer = document.getElementById('tableContainer');
@@ -126,10 +126,39 @@ createTableButton.addEventListener('click', function () {
         let row = document.createElement('tr');
         for (let j = 0; j < columnCount; j++) {
             let cell = document.createElement('td');
-            cell.textContent = cellContent;
+            cell.innerText = cellContent;
             row.appendChild(cell);
         }
         table.appendChild(row);
     }
     tableContainer.appendChild(table);
+
+    document.getElementById('rowCountInput').value = '';
+    document.getElementById('columnCountInput').value = '';
+    document.getElementById('cellContentInput').value = '';
 });
+
+// *** (подібне було вище, але...будьте уважні в другій частині) створити сторінку з довільним блоком, в середині якого є значення "100грн"
+// при перезавантаженні сторінки до значаення додається по 10грн, але !!!
+//     зміна ціни відбувається тільки на перезавантаження, які відбулись пізніше ніж 10 секунд після попереднього.
+//     При перезавантаженні, яке відбулось раніше ніж минуло 10 секунд - нічого не відбувається
+
+function updatePrice() {
+    let currentTime = new Date().getTime();
+    let priceBlock = document.getElementById('priceBlock');
+
+    let lastUpdateTime = JSON.parse(localStorage.getItem('lastUpdateTime')) || [];
+    let lastUpdatePrice = parseInt(localStorage.getItem('lastUpdatePrice')) || 100;
+
+    if (lastUpdateTime.length === 0 || currentTime - lastUpdateTime[lastUpdateTime.length - 1].time >= 10000) {
+        let newPrice = lastUpdatePrice + 10;
+        priceBlock.innerText = newPrice + " грн";
+
+        localStorage.setItem('lastUpdateTime', JSON.stringify([lastUpdateTime, {time: currentTime}]));
+        localStorage.setItem('lastUpdatePrice', newPrice);
+    } else {
+        priceBlock.innerText = lastUpdatePrice + " грн";
+    }
+}
+
+updatePrice();
