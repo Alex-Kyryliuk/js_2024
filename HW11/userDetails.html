@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Details</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            font-size: 1.5em;
+            color: #4a776e;
+        }
+    </style>
+</head>
+<body>
+<a href="users.html">Перейти назад до списку USERS</a>
+<h1>User Details</h1>
+
+<script>
+    const userId = new URL(location.href).searchParams.get('id');
+    let baseUrl = 'http://jsonplaceholder.typicode.com/users/' + userId;
+
+    fetch(baseUrl)
+        .then(res => res.json())
+        .then(data => {
+            let div = document.createElement('div');
+            document.body.appendChild(div);
+
+            for (const dataKey in data) {
+                if (dataKey === 'address' || dataKey === 'company') {
+                    let ul = document.createElement('ul');
+                    div.appendChild(ul);
+                    ul.innerText = dataKey.toUpperCase() + ':';
+
+                    for (const subKey in data[dataKey]) {
+                        if (subKey !== 'geo') {
+                            let li = document.createElement('li');
+                            li.innerText = `${subKey}: ${data[dataKey][subKey]}`;
+                            ul.appendChild(li);
+                        } else {
+                            let geoUl = document.createElement('ul');
+                            ul.appendChild(geoUl);
+                            geoUl.innerText = 'geo:';
+
+                            for (const geoKey in data[dataKey]['geo']) {
+                                let geoLi = document.createElement('li');
+                                geoLi.innerText = `${geoKey}: ${data[dataKey]['geo'][geoKey]}`;
+                                geoUl.appendChild(geoLi);
+                            }
+                        }
+                    }
+                } else {
+                    let p = document.createElement('p');
+                    p.innerText = `${dataKey.toUpperCase()}: ${data[dataKey]}`;
+                    div.appendChild(p);
+                }
+            }
+        });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            font-size: 1.5em;
+            color: #4a776e;
+        }
+
+        .ulUsers {
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    fetch('http://jsonplaceholder.typicode.com/users')
+        .then(res => res.json())
+        .then(users => {
+            for (const user of users) {
+                // console.log(user);
+                let divUsers = document.createElement('div');
+                document.body.appendChild(divUsers);
+
+                let ulUsers = document.createElement('ul');
+                divUsers.appendChild(ulUsers);
+                ulUsers.classList.add('ulUsers');
+
+                let listItem = document.createElement('li');
+                let link = document.createElement('a');
+                link.href = `userDetails.html?id=${user.id}`;
+                link.innerText = `${user.id}. ${user.name}`;
+                listItem.appendChild(link);
+                ulUsers.appendChild(listItem);
+
+                link.addEventListener('click', () => {
+                    location.href = 'userDetails.html?id=' + user.id;
+                });
+            }
+        });
+</script>
+</body>
+</html>
